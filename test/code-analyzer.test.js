@@ -38,7 +38,7 @@ describe('The javascript parser', () => {
         assert.equal(
             JSON.stringify(parseCode('for (var i=0; i<8; i++){}')[1]),
             JSON.stringify([
-                {'Line': 1, 'Type': 'For Statement', 'Condition': 'let i=0 ; i<8 ; i++'}]
+                {'Line': 1, 'Type': 'For Statement', 'Condition': 'let i=0 ; i < 8 ; i++'}]
             )
         );
     });
@@ -49,7 +49,7 @@ describe('The javascript parser', () => {
         assert.equal(
             JSON.stringify(parseCode('for (var i=0; i<j; i++){}')[1]),
             JSON.stringify([
-                {'Line': 1, 'Type': 'For Statement', 'Condition': 'let i=0 ; i<j ; i++'}]
+                {'Line': 1, 'Type': 'For Statement', 'Condition': 'let i=0 ; i < j ; i++'}]
             )
         );
     });

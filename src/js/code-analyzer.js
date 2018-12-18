@@ -93,7 +93,7 @@ function variable_handler(variable_json) {
 
 function assignment_handler(assignment_json) {
     let records = [];
-    let var_name = assignment_json.left.name;
+    let var_name = type_to_function_handler[assignment_json.left.type](assignment_json.left);
     let var_value = type_to_function_handler[assignment_json.right.type](assignment_json.right);
     records.push({
         'Line': assignment_json.loc.start.line,
@@ -151,7 +151,7 @@ function for_handler(for_json) {
     records.push({
         'Line': for_json.loc.start.line,
         'Type': 'For Statement',
-        'Condition': init + ' ; ' + test + ' ; ' + update
+        'Condition': init + ' ; ' + test.replace('<', ' < ').replace('>', ' > ') + ' ; ' + update
     });
     return records.concat(type_to_function_handler[for_json.body.type](for_json.body));
 }
